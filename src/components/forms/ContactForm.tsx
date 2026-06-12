@@ -1,0 +1,113 @@
+"use client";
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const contactSchema = z.object({
+  name: z.string().min(2, "Name is required"),
+  email: z.string().email("Valid email is required"),
+  phone: z.string().min(10, "Valid phone number is required"),
+  organization: z.string().min(2, "Organization is required"),
+  subject: z.string().min(1, "Please select a subject"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
+
+export function ContactForm() {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
+    await new Promise((r) => setTimeout(r, 1000));
+    console.log(data);
+    reset();
+    alert("Thank you for contacting us. We will respond shortly.");
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <Label htmlFor="name">Full Name *</Label>
+          <Input id="name" {...register("name")} className="mt-1.5" />
+          {errors.name && (
+            <p className="mt-1 text-xs text-destructive">{errors.name.message}</p>
+          )}
+        </div>
+        <div>
+          <Label htmlFor="email">Email Address *</Label>
+          <Input id="email" type="email" {...register("email")} className="mt-1.5" />
+          {errors.email && (
+            <p className="mt-1 text-xs text-destructive">{errors.email.message}</p>
+          )}
+        </div>
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <Label htmlFor="phone">Phone Number *</Label>
+          <Input id="phone" {...register("phone")} className="mt-1.5" />
+          {errors.phone && (
+            <p className="mt-1 text-xs text-destructive">{errors.phone.message}</p>
+          )}
+        </div>
+        <div>
+          <Label htmlFor="organization">Organization *</Label>
+          <Input id="organization" {...register("organization")} className="mt-1.5" />
+          {errors.organization && (
+            <p className="mt-1 text-xs text-destructive">
+              {errors.organization.message}
+            </p>
+          )}
+        </div>
+      </div>
+      <div>
+        <Label>Subject *</Label>
+        <Select onValueChange={(v) => setValue("subject", v)}>
+          <SelectTrigger className="mt-1.5">
+            <SelectValue placeholder="Select a subject" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="general">General Inquiry</SelectItem>
+            <SelectItem value="products">Product Information</SelectItem>
+            <SelectItem value="quotation">Request Quotation</SelectItem>
+            <SelectItem value="support">Technical Support</SelectItem>
+            <SelectItem value="partnership">Partnership</SelectItem>
+          </SelectContent>
+        </Select>
+        {errors.subject && (
+          <p className="mt-1 text-xs text-destructive">{errors.subject.message}</p>
+        )}
+      </div>
+      <div>
+        <Label htmlFor="message">Message *</Label>
+        <Textarea id="message" rows={5} {...register("message")} className="mt-1.5" />
+        {errors.message && (
+          <p className="mt-1 text-xs text-destructive">{errors.message.message}</p>
+        )}
+      </div>
+      <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto">
+        {isSubmitting ? "Sending..." : "Send Message"}
+      </Button>
+    </form>
+  );
+}
