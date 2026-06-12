@@ -47,7 +47,7 @@ const quotationSchema = z.object({
   accurateInfo: z.boolean().refine((v) => v === true, "Please confirm information accuracy"),
 });
 
-type QuotationFormData = z.infer<typeof quotationSchema>;
+type QuotationFormData = z.input<typeof quotationSchema>;
 
 export function QuotationForm() {
   const [showSuccess, setShowSuccess] = useState(false);
