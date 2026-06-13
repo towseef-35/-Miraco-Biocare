@@ -13,11 +13,11 @@ export const leadership: TeamMember[] = [
   image: "/drmuneer.png",
 },
   {
-    name: "Dr. Priya Sharma",
-    role: "Chief Scientific Officer",
-    bio: "PhD in Molecular Biology with expertise in diagnostics, genomics, and laboratory sciences. Former research director at a leading medical institute.",
+    name: "Ishfaq MaveRicks",
+    role: "Medical Representative",
+    bio: " with expertise in diagnostics, genomics, and laboratory sciences. Former research director at a leading medical institute.",
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80",
+      "/MedicalRepresentative.png",
   },
   {
     name: "Arun Mehta",
