@@ -2,7 +2,7 @@ export const company = {
   name: "Miraco Biocare Private Limited",
   shortName: "Miraco Biocare",
   tagline: "Innovating Diagnostics. Advancing Research. Improving Lives.",
-  welcomeTagline: "Advancing Science. Empowering Healthcare.",
+ 
   welcomeText1:
     "Miraco Biocare Private Limited is a trusted provider of innovative solutions for the pharmaceutical, biotechnology, life sciences, diagnostics, healthcare, and research sectors. We partner with globally recognized manufacturers to deliver high-quality instruments, laboratory equipment, reagents, consumables, and diagnostic solutions that empower scientific discovery and improve patient care.",
   welcomeText2:
