@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import { ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { buttonVariants } from "@/components/ui/button";
 import { company } from "@/data/company";
 import { heroBanners } from "@/data/hero-banners";
@@ -23,7 +23,7 @@ interface SlideContentProps {
 
 function SlideContent({ banner, isActive, index }: SlideContentProps) {
   // Staggered child variants
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -34,7 +34,7 @@ function SlideContent({ banner, isActive, index }: SlideContentProps) {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
