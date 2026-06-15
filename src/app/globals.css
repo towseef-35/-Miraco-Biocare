@@ -307,6 +307,62 @@
   animation: float-reverse 10s ease-in-out infinite;
 }
 
+@keyframes float-medium {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  50% {
+    transform: translate(6px, -12px) rotate(1deg);
+  }
+}
+
+@utility animate-float-medium {
+  animation: float-medium 7s ease-in-out infinite;
+}
+
+
+@keyframes mobile-ken-burns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.04);
+  }
+}
+
+@keyframes premium-ken-burns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.12) translate(-1%, -0.5%);
+  }
+}
+
+@utility animate-ken-burns {
+  will-change: transform;
+  transform-origin: center;
+}
+
+.swiper-slide-active .animate-ken-burns {
+  animation: mobile-ken-burns 14s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@media (min-width: 1024px) {
+  .swiper-slide-active .animate-ken-burns {
+    animation: premium-ken-burns 14s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+}
+
+
+@utility perspective-1000 {
+  perspective: 1000px;
+}
+
+@utility transform-3d {
+  transform-style: preserve-3d;
+}
+
 /* Premium Glow & Borders */
 .premium-glow-card {
   position: relative;

@@ -77,21 +77,36 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full">
-      <TopBar />
+      <div 
+        className={cn(
+          "transition-all duration-300 overflow-hidden",
+          scrolled ? "max-h-0 opacity-0" : "max-h-[40px] opacity-100"
+        )}
+      >
+        <TopBar />
+      </div>
       <div
         className={cn(
           "transition-all duration-300",
           scrolled ? "glass-header shadow-sm" : "bg-white dark:bg-background"
         )}
       >
-        <div className="container-custom flex h-16 items-center justify-between md:h-20">
+        <div 
+          className={cn(
+            "container-custom flex items-center justify-between transition-all duration-300",
+            scrolled ? "h-12 md:h-14" : "h-16 md:h-20"
+          )}
+        >
        <Link href="/" className="flex items-center gap-2">
           <Image
             src="/logo.png"
             alt="Miraco Biocare Logo"
             width={180}
             height={60}
-            className="h-10 w-auto md:h-15 md:w-auto object-contain logo-img"
+            className={cn(
+              "w-auto object-contain logo-img transition-all duration-300",
+              scrolled ? "h-8 md:h-10" : "h-10 md:h-15"
+            )}
             priority
           />
        </Link>
