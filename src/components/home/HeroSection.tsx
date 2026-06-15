@@ -22,79 +22,95 @@ interface SlideContentProps {
 }
 
 function SlideContent({ banner, isActive, index }: SlideContentProps) {
+  // Staggered child variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+      },
+    },
+  };
+
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isActive && (
         <motion.div
+          key={banner.id}
           initial="hidden"
           animate="visible"
           exit="hidden"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.15,
-                delayChildren: 0.1,
-              },
-            },
-          }}
-          className="max-w-xl select-none rounded-[1.75rem] border border-white/20 dark:border-white/10 bg-white/75 dark:bg-slate-950/75 p-6 shadow-2xl backdrop-blur-md sm:max-w-2xl sm:p-8 lg:max-w-3xl lg:p-12 min-h-[200px] sm:min-h-[260px] md:min-h-[300px] lg:min-h-[380px] flex flex-col justify-center relative overflow-hidden"
+          variants={containerVariants}
+          className="relative w-full max-w-xl select-none rounded-[2rem] border border-white/20 dark:border-white/5 bg-white/45 dark:bg-slate-950/45 p-6 sm:p-8 md:p-10 lg:p-12 shadow-[0_24px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_24px_50px_rgba(0,0,0,0.4)] backdrop-blur-xl sm:max-w-2xl lg:max-w-3xl flex flex-col justify-center overflow-hidden"
         >
-          {/* Decorative Corner Glow */}
-          <div className="absolute -top-12 -right-12 w-24 h-24 bg-brand-primary/10 dark:bg-brand-primary/20 rounded-full blur-xl pointer-events-none" />
+          {/* Subtle color spot inside the card */}
+          <div className="absolute -top-20 -right-20 w-48 h-48 bg-brand-primary/10 dark:bg-brand-primary/20 rounded-full blur-[50px] pointer-events-none" />
+          <div className="absolute -bottom-20 -left-20 w-48 h-48 bg-brand-secondary/10 dark:bg-brand-secondary/20 rounded-full blur-[50px] pointer-events-none" />
 
-          {/* Welcome pre-title */}
+          {/* Pre-title */}
           {index === 0 && (
             <motion.div
-              variants={{
-                hidden: { opacity: 0, y: -10 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-              }}
-              className="mb-2 sm:mb-3 flex items-center gap-2"
+              variants={itemVariants}
+              className="mb-3 flex items-center gap-2"
             >
               <span className="h-[2px] w-6 bg-brand-secondary rounded-full" />
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-secondary sm:text-xs">
+              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-secondary dark:text-brand-accent sm:text-xs">
                 Welcome to {company.name}
               </p>
             </motion.div>
           )}
 
-          {/* Title */}
+          {/* Headline */}
           <motion.h1
-            variants={{
-              hidden: { opacity: 0, y: 15 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
-            }}
-            className="text-lg font-extrabold leading-snug text-brand-text dark:text-foreground sm:text-2xl md:text-3xl lg:text-5xl lg:leading-[1.15] tracking-tight text-gradient"
+            variants={itemVariants}
+            className="text-xl font-extrabold leading-tight text-slate-900 dark:text-white sm:text-3xl md:text-4xl lg:text-5xl lg:leading-[1.12] tracking-tight"
           >
-            {banner.title}
+            {banner.title.split(", ").map((part, i, arr) => (
+              <span key={i} className="block">
+                {i === arr.length - 1 ? (
+                  <span className="bg-gradient-to-r from-brand-primary to-brand-secondary dark:from-brand-accent dark:to-brand-primary bg-clip-text text-transparent">
+                    {part}
+                  </span>
+                ) : (
+                  part
+                )}
+              </span>
+            ))}
           </motion.h1>
 
-          {/* Subtitle / Description */}
+          {/* Subtitle */}
           <motion.p
-            variants={{
-              hidden: { opacity: 0, y: 15 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
-            }}
-            className="mt-3 line-clamp-3 text-xs leading-relaxed text-muted-foreground sm:line-clamp-none sm:text-sm md:mt-4 md:text-base"
+            variants={itemVariants}
+            className="mt-4 text-xs leading-relaxed text-slate-700 dark:text-slate-200 sm:text-sm md:text-base md:leading-relaxed"
           >
             {banner.subtitle}
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* Actions */}
           <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 15 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
-            }}
+            variants={itemVariants}
             className="mt-6 flex flex-col gap-3 sm:flex-row md:mt-8"
           >
             <Link
               href="/#divisions"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-10 text-xs md:h-12 md:text-sm shadow-md transition-all duration-300 hover:shadow-lg active:scale-95 group/btn rounded-full bg-gradient-to-r from-brand-primary to-brand-secondary text-white font-medium border-0"
+                "h-10 text-xs md:h-12 md:text-sm shadow-md transition-all duration-300 hover:shadow-lg active:scale-95 group/btn rounded-full bg-gradient-to-r from-brand-primary to-brand-secondary dark:from-brand-primary dark:to-brand-accent text-white font-medium border-0"
               )}
             >
               Explore Solutions
@@ -104,7 +120,7 @@ function SlideContent({ banner, isActive, index }: SlideContentProps) {
               href="/request-quotation"
               className={cn(
                 buttonVariants({ size: "lg", variant: "outline" }),
-                "h-10 text-xs md:h-12 md:text-sm transition-all duration-300 active:scale-95 bg-white/40 dark:bg-card/40 backdrop-blur-sm hover:bg-white/80 dark:hover:bg-card/80 rounded-full border-brand-border/60 dark:border-border/30 text-brand-text dark:text-foreground hover:border-brand-primary"
+                "h-10 text-xs md:h-12 md:text-sm transition-all duration-300 active:scale-95 bg-white/30 dark:bg-card/20 backdrop-blur-md hover:bg-white/60 dark:hover:bg-card/50 rounded-full border-brand-border/60 dark:border-border/10 text-slate-800 dark:text-slate-100 hover:border-brand-primary"
               )}
             >
               Request Quotation
@@ -120,20 +136,21 @@ export function HeroSection() {
   const [realIndex, setRealIndex] = useState(0);
 
   return (
-    <section className="relative bg-brand-light overflow-hidden">
-      {/* Background soft color spots for extra visual depth */}
+    <section className="relative overflow-hidden bg-brand-light dark:bg-slate-950">
+      {/* Background Soft Blobs */}
       <div className="absolute top-1/4 left-1/4 w-[350px] h-[350px] bg-brand-primary/10 rounded-full blur-[120px] pointer-events-none z-1" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-brand-secondary/10 rounded-full blur-[140px] pointer-events-none z-1" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-brand-secondary/10 dark:bg-brand-primary/5 rounded-full blur-[140px] pointer-events-none z-1" />
 
-      <div className="hero-carousel relative h-[450px] sm:h-[500px] md:h-[550px] lg:h-[680px] overflow-hidden z-10">
+      {/* Main Container */}
+      <div className="hero-carousel relative h-[500px] sm:h-[550px] md:h-[620px] lg:h-[720px] overflow-hidden z-10">
         <Swiper
           modules={[Autoplay, EffectFade, Pagination]}
           effect="fade"
           fadeEffect={{ crossFade: true }}
-          speed={1000}
+          speed={1200}
           loop={true}
           autoplay={{
-            delay: 6000,
+            delay: 6500,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
@@ -150,45 +167,48 @@ export function HeroSection() {
           allowTouchMove={true}
           className="h-full w-full"
         >
-          {heroBanners.map((banner, index) => (
-            <SwiperSlide key={banner.id} className="relative h-full overflow-hidden">
-              <>
-                {/* Background Image Container with advanced Ken Burns zoom transition */}
-                <div className="absolute inset-0 overflow-hidden">
-                  <div className="relative h-full w-full overflow-hidden">
-                    <Image
-                      src={banner.image}
-                      alt={banner.alt}
-                      fill
-                      priority={index === 0}
-                      className={cn(
-                        "object-cover object-center transition-transform duration-[7000ms] ease-out",
-                        realIndex === index ? "scale-108 translate-y-1" : "scale-100 translate-y-0"
-                      )}
-                      sizes="100vw"
-                      quality={90}
-                      draggable={false}
-                    />
+          {heroBanners.map((banner, index) => {
+            const isSlideActive = realIndex === index;
+            return (
+              <SwiperSlide key={banner.id} className="relative h-full overflow-hidden">
+                <>
+                  {/* Background Image Container with Ken Burns effect */}
+                  <div className="absolute inset-0 overflow-hidden">
+                    <div className="relative h-full w-full overflow-hidden">
+                      <Image
+                        src={banner.image}
+                        alt={banner.alt}
+                        fill
+                        priority={index === 0}
+                        className={cn(
+                          "object-cover object-center transition-transform duration-[6800ms] ease-out",
+                          isSlideActive ? "scale-108 translate-x-1 translate-y-1" : "scale-100 translate-x-0 translate-y-0"
+                        )}
+                        sizes="100vw"
+                        quality={90}
+                        draggable={false}
+                      />
+                    </div>
                   </div>
-                </div>
 
-                {/* Dark & Light Dual-Mode Gradient Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/40 to-transparent md:from-white/90 md:via-white/30 md:to-transparent dark:from-background/95 dark:via-background/35 dark:to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white/80 dark:from-background/80 to-transparent" />
+                  {/* Glass Gradient Overlays */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/30 to-transparent md:from-white/90 md:via-white/20 md:to-transparent dark:from-slate-950/95 dark:via-slate-950/30 dark:to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white/90 dark:from-slate-950/90 to-transparent" />
 
-                {/* Slide Content Box */}
-                <div className="absolute inset-x-0 bottom-0 top-12 md:top-0 flex items-center">
-                  <div className="container-custom w-full py-4 sm:py-6 md:py-8">
-                    <SlideContent
-                      banner={banner}
-                      isActive={realIndex === index}
-                      index={index}
-                    />
+                  {/* Slide Content Box */}
+                  <div className="absolute inset-0 flex items-center justify-start pt-16 md:pt-0">
+                    <div className="container-custom w-full py-4 sm:py-6 md:py-8">
+                      <SlideContent
+                        banner={banner}
+                        isActive={isSlideActive}
+                        index={index}
+                      />
+                    </div>
                   </div>
-                </div>
-              </>
-            </SwiperSlide>
-          ))}
+                </>
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </div>
     </section>
