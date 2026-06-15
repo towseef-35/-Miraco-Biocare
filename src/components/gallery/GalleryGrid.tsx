@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/shared/SafeImage";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { galleryImages } from "@/data/gallery";
@@ -43,7 +43,7 @@ export function GalleryGrid() {
               alt={image.alt}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, 25vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
             <div className="absolute bottom-3 left-3 opacity-0 transition-opacity group-hover:opacity-100">

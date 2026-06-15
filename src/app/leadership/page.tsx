@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/shared/SafeImage";
 import Link from "next/link";
 import { PageHero } from "@/components/shared/PageHero";
 import { SectionHeading } from "@/components/shared/SectionHeading";

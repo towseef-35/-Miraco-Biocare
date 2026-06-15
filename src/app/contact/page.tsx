@@ -1,9 +1,9 @@
 import { Mail, Phone, Globe, MapPin } from "lucide-react";
 import { PageHero } from "@/components/shared/PageHero";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-import { ContactForm } from "@/components/forms/ContactForm";
 import { createMetadata } from "@/lib/metadata";
 import { company } from "@/data/company";
+import { ContactForm } from "@/components/forms/ContactForm";
 
 export const metadata = createMetadata({
   title: "Contact Us",

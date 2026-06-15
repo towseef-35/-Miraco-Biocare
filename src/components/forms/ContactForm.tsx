@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -15,6 +15,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -28,6 +35,8 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 export function ContactForm() {
+  const [showSuccess, setShowSuccess] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -53,74 +62,89 @@ export function ContactForm() {
   const onSubmit = async (data: ContactFormData) => {
     await new Promise((r) => setTimeout(r, 1000));
     console.log(data);
+    setShowSuccess(true);
     reset();
-    alert("Thank you for contacting us. We will respond shortly.");
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <div className="grid gap-4 sm:grid-cols-2">
+    <>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div>
+            <Label htmlFor="name">Full Name *</Label>
+            <Input id="name" {...register("name")} className="mt-1.5" />
+            {errors.name && (
+              <p className="mt-1 text-xs text-destructive">{errors.name.message}</p>
+            )}
+          </div>
+          <div>
+            <Label htmlFor="email">Email Address *</Label>
+            <Input id="email" type="email" {...register("email")} className="mt-1.5" />
+            {errors.email && (
+              <p className="mt-1 text-xs text-destructive">{errors.email.message}</p>
+            )}
+          </div>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div>
+            <Label htmlFor="phone">Phone Number *</Label>
+            <Input id="phone" {...register("phone")} className="mt-1.5" />
+            {errors.phone && (
+              <p className="mt-1 text-xs text-destructive">{errors.phone.message}</p>
+            )}
+          </div>
+          <div>
+            <Label htmlFor="organization">Organization *</Label>
+            <Input id="organization" {...register("organization")} className="mt-1.5" />
+            {errors.organization && (
+              <p className="mt-1 text-xs text-destructive">
+                {errors.organization.message}
+              </p>
+            )}
+          </div>
+        </div>
         <div>
-          <Label htmlFor="name">Full Name *</Label>
-          <Input id="name" {...register("name")} className="mt-1.5" />
-          {errors.name && (
-            <p className="mt-1 text-xs text-destructive">{errors.name.message}</p>
+          <Label>Subject *</Label>
+          <Select onValueChange={(v) => setValue("subject", v as string)}>
+            <SelectTrigger className="mt-1.5">
+              <SelectValue placeholder="Select a subject" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="general">General Inquiry</SelectItem>
+              <SelectItem value="products">Product Information</SelectItem>
+              <SelectItem value="quotation">Request Quotation</SelectItem>
+              <SelectItem value="support">Technical Support</SelectItem>
+              <SelectItem value="partnership">Partnership</SelectItem>
+            </SelectContent>
+          </Select>
+          {errors.subject && (
+            <p className="mt-1 text-xs text-destructive">{errors.subject.message}</p>
           )}
         </div>
         <div>
-          <Label htmlFor="email">Email Address *</Label>
-          <Input id="email" type="email" {...register("email")} className="mt-1.5" />
-          {errors.email && (
-            <p className="mt-1 text-xs text-destructive">{errors.email.message}</p>
+          <Label htmlFor="message">Message *</Label>
+          <Textarea id="message" rows={5} {...register("message")} className="mt-1.5" />
+          {errors.message && (
+            <p className="mt-1 text-xs text-destructive">{errors.message.message}</p>
           )}
         </div>
-      </div>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <Label htmlFor="phone">Phone Number *</Label>
-          <Input id="phone" {...register("phone")} className="mt-1.5" />
-          {errors.phone && (
-            <p className="mt-1 text-xs text-destructive">{errors.phone.message}</p>
-          )}
-        </div>
-        <div>
-          <Label htmlFor="organization">Organization *</Label>
-          <Input id="organization" {...register("organization")} className="mt-1.5" />
-          {errors.organization && (
-            <p className="mt-1 text-xs text-destructive">
-              {errors.organization.message}
-            </p>
-          )}
-        </div>
-      </div>
-      <div>
-        <Label>Subject *</Label>
-        <Select onValueChange={(v) => setValue("subject", v as string)}>
-          <SelectTrigger className="mt-1.5">
-            <SelectValue placeholder="Select a subject" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="general">General Inquiry</SelectItem>
-            <SelectItem value="products">Product Information</SelectItem>
-            <SelectItem value="quotation">Request Quotation</SelectItem>
-            <SelectItem value="support">Technical Support</SelectItem>
-            <SelectItem value="partnership">Partnership</SelectItem>
-          </SelectContent>
-        </Select>
-        {errors.subject && (
-          <p className="mt-1 text-xs text-destructive">{errors.subject.message}</p>
-        )}
-      </div>
-      <div>
-        <Label htmlFor="message">Message *</Label>
-        <Textarea id="message" rows={5} {...register("message")} className="mt-1.5" />
-        {errors.message && (
-          <p className="mt-1 text-xs text-destructive">{errors.message.message}</p>
-        )}
-      </div>
-      <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto">
-        {isSubmitting ? "Sending..." : "Send Message"}
-      </Button>
-    </form>
+        <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto">
+          {isSubmitting ? "Sending..." : "Send Message"}
+        </Button>
+      </form>
+
+      <Dialog open={showSuccess} onOpenChange={setShowSuccess}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Message Sent Successfully</DialogTitle>
+            <DialogDescription>
+              Thank you for reaching out to Miraco Biocare. We have received your message
+              and our team will get back to you shortly.
+            </DialogDescription>
+          </DialogHeader>
+          <Button onClick={() => setShowSuccess(false)}>Close</Button>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }

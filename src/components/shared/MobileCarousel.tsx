@@ -21,16 +21,26 @@ export function MobileCarousel({
   const validChildren = React.Children.toArray(children).filter(Boolean);
   const count = validChildren.length;
 
+  const ticking = useRef(false);
+
   const handleScroll = () => {
-    if (!containerRef.current) return;
-    const { scrollLeft, clientWidth, scrollWidth } = containerRef.current;
-    
-    const maxScrollLeft = scrollWidth - clientWidth;
-    if (maxScrollLeft <= 0) return;
-    
-    const percentage = scrollLeft / maxScrollLeft;
-    const index = Math.round(percentage * (count - 1));
-    setActiveIndex(index);
+    if (!ticking.current) {
+      window.requestAnimationFrame(() => {
+        if (!containerRef.current) {
+          ticking.current = false;
+          return;
+        }
+        const { scrollLeft, clientWidth, scrollWidth } = containerRef.current;
+        const maxScrollLeft = scrollWidth - clientWidth;
+        if (maxScrollLeft > 0) {
+          const percentage = scrollLeft / maxScrollLeft;
+          const index = Math.round(percentage * (count - 1));
+          setActiveIndex(index);
+        }
+        ticking.current = false;
+      });
+      ticking.current = true;
+    }
   };
 
   // Determine snap/width classes based on the breakpoint prop

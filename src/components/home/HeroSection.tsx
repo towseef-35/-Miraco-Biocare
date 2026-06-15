@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import Image from "@/components/shared/SafeImage";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
@@ -98,7 +98,7 @@ export function HeroSection() {
 
   return (
     <section className="relative bg-brand-light">
-      <div className="hero-carousel relative h-[220px] sm:h-[280px] md:h-[350px] lg:h-[550px] overflow-hidden">
+      <div className="hero-carousel relative h-[360px] sm:h-[400px] md:h-[450px] lg:h-[550px] overflow-hidden">
         <Swiper
           modules={[Autoplay, EffectFade]}
           effect="fade"
@@ -142,10 +142,10 @@ export function HeroSection() {
                 </div>
 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/50 to-transparent md:from-white/85 md:via-white/35 md:to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/50 to-transparent md:from-white/85 md:via-white/35 md:to-transparent dark:from-background/95 dark:via-background/40 dark:to-transparent" />
 
                 {/* Slide Content Box */}
-                <div className="absolute inset-0 flex items-center">
+                <div className="absolute inset-x-0 bottom-0 top-16 md:top-0 flex items-center">
                   <div className="container-custom w-full py-3 sm:py-4 md:py-6">
                     <SlideContent
                       banner={banner}

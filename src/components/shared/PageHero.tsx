@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/shared/SafeImage";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
@@ -18,7 +18,7 @@ const DEFAULT_BANNER = "/hero/banner-1.jpg";
 
 export function PageHero({ title, subtitle, breadcrumbs, image }: PageHeroProps) {
   return (
-    <section className="relative h-[220px] overflow-hidden bg-brand-light md:h-[350px] lg:h-[550px]">
+    <section className="relative h-[280px] sm:h-[320px] md:h-[350px] lg:h-[550px] overflow-hidden bg-brand-light">
       <Image
         src={image || DEFAULT_BANNER}
         alt={title}
@@ -28,8 +28,8 @@ export function PageHero({ title, subtitle, breadcrumbs, image }: PageHeroProps)
         sizes="100vw"
         quality={85}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent" />
-      <div className="absolute inset-0 flex items-center">
+      <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/40 to-transparent dark:from-background/90 dark:via-background/45 dark:to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 top-16 md:top-0 flex items-center">
         <div className="container-custom w-full py-4 md:py-6">
           <div className="max-w-2xl rounded-lg border border-brand-border/60 bg-white/85 p-4 shadow-sm backdrop-blur-sm md:max-w-3xl md:p-6 md:shadow-md lg:p-8">
             {breadcrumbs && breadcrumbs.length > 0 && (

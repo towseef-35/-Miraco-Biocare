@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/shared/SafeImage";
 import Link from "next/link";
 import { Check, ArrowRight } from "lucide-react";
 import type { ReactNode } from "react";

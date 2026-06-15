@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/shared/SafeImage";
 import Link from "next/link";
 import { Calendar, ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/shared/PageHero";

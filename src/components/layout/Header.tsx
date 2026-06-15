@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "@/components/shared/SafeImage";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Search, X } from "lucide-react";
@@ -25,7 +26,7 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -85,14 +86,15 @@ export function Header() {
       >
         <div className="container-custom flex h-16 items-center justify-between md:h-20">
        <Link href="/" className="flex items-center gap-2">
-          <img
+          <Image
             src="/logo.png"
             alt="Miraco Biocare Logo"
-            className="h-10 w-auto md:h-15 md:w-auto object-contain"
+            width={180}
+            height={60}
+            className="h-10 w-auto md:h-15 md:w-auto object-contain logo-img"
+            priority
           />
-
- 
-</Link>
+       </Link>
 
           <nav className="hidden items-center gap-1 xl:flex text-brand-text">
             {mainNav.map((item) =>

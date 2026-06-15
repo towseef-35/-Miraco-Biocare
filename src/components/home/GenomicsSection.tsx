@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/shared/SafeImage";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Dna, Check } from "lucide-react";

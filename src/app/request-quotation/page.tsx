@@ -1,7 +1,7 @@
 import { PageHero } from "@/components/shared/PageHero";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-import { QuotationForm } from "@/components/forms/QuotationForm";
 import { createMetadata } from "@/lib/metadata";
+import { QuotationForm } from "@/components/forms/QuotationForm";
 
 export const metadata = createMetadata({
   title: "Request Quotation",

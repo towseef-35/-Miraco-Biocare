@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/shared/SafeImage";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { company } from "@/data/company";

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "@/components/shared/SafeImage";
 import { Globe, Mail, Share2, Video } from "lucide-react";
 import {
   Accordion,
@@ -36,10 +37,12 @@ export function Footer() {
         <div className="mb-8 grid gap-8 lg:grid-cols-6">
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-2">
-              <img
+              <Image
                 src="/logo.png"
                 alt="Miraco Biocare Logo"
-                className="h-10 w-auto md:h-15 md:w-auto object-contain"
+                width={180}
+                height={60}
+                className="h-10 w-auto md:h-15 md:w-auto object-contain logo-img"
               />
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">{company.tagline}</p>
@@ -109,24 +112,32 @@ export function Footer() {
         </div>
 
        <div className="flex flex-wrap justify-center gap-4">
-  <img
-    src="https://nextgenlife.com/wp-content/uploads/2023/11/msme.png"
-    alt=""
+  <Image
+    src="/badges/msme.png"
+    alt="MSME Certified Badge"
+    width={150}
+    height={56}
     className="w-[110px] h-[46px] sm:w-[150px] sm:h-[56px] object-contain"
   />
-  <img
-    src="https://nextgenlife.com/wp-content/uploads/2023/11/gem.png"
-    alt=""
+  <Image
+    src="/badges/gem.png"
+    alt="Government e-Marketplace (GeM) Registered Badge"
+    width={150}
+    height={56}
     className="w-[110px] h-[46px] sm:w-[150px] sm:h-[56px] object-contain"
   />
-  <img
-    src="https://nextgenlife.com/wp-content/uploads/2023/11/ISO.png"
-    alt=""
+  <Image
+    src="/badges/iso.png"
+    alt="ISO 9001 Certified Badge"
+    width={150}
+    height={56}
     className="w-[110px] h-[46px] sm:w-[150px] sm:h-[56px] object-contain"
   />
-  <img
-    src="https://nextgenlife.com/wp-content/uploads/2023/11/makeinindia.png"
-    alt=""
+  <Image
+    src="/badges/makeinindia.png"
+    alt="Make In India Initiative Badge"
+    width={150}
+    height={56}
     className="w-[110px] h-[46px] sm:w-[150px] sm:h-[56px] object-contain"
   />
 </div>
