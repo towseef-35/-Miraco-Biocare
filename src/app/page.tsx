@@ -6,6 +6,11 @@ import {
   lifeSciencesSections,
 } from "@/data/divisions-content";
 
+const StatsSection = dynamic(
+  () => import("@/components/home/StatsSection").then((mod) => mod.StatsSection),
+  { ssr: true }
+);
+
 const DivisionsSection = dynamic(
   () => import("@/components/home/DivisionsSection").then((mod) => mod.DivisionsSection),
   { ssr: true }
@@ -36,6 +41,11 @@ const WhyChooseUs = dynamic(
   { ssr: true }
 );
 
+const IndustriesSection = dynamic(
+  () => import("@/components/home/IndustriesSection").then((mod) => mod.IndustriesSection),
+  { ssr: true }
+);
+
 const PartnersCarousel = dynamic(
   () => import("@/components/home/PartnersCarousel").then((mod) => mod.PartnersCarousel),
   { ssr: true }
@@ -50,6 +60,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <StatsSection />
       <DivisionsSection />
       <AboutSection />
       <ProductPortfolioSection />
@@ -70,6 +81,7 @@ export default function HomePage() {
       />
       <GenomicsSection />
       <WhyChooseUs />
+      <IndustriesSection />
       <PartnersCarousel />
       <NewsSection />
       <ContactCTA />

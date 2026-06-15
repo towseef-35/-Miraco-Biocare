@@ -265,3 +265,84 @@
   @apply bg-brand-light;
 }
 
+/* Premium Marquee & Custom Effects */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll var(--marquee-duration, 40s) linear infinite;
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(8px) rotate(-2deg);
+  }
+}
+
+@utility animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+@utility animate-float-reverse {
+  animation: float-reverse 10s ease-in-out infinite;
+}
+
+/* Premium Glow & Borders */
+.premium-glow-card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--border);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-glow-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.premium-glow-card:hover::before {
+  opacity: 0.15;
+}
+
+.dark .premium-glow-card:hover::before {
+  opacity: 0.3;
+}
+
+.premium-glow-card:hover {
+  transform: translateY(-4px);
+  border-color: transparent;
+  box-shadow: 0 20px 40px -15px rgba(0, 87, 184, 0.12), 0 0 0 1px rgba(0, 87, 184, 0.05);
+}
+
+.dark .premium-glow-card:hover {
+  box-shadow: 0 20px 40px -15px rgba(16, 185, 129, 0.2), 0 0 0 1px rgba(16, 185, 129, 0.15);
+}
+
+
