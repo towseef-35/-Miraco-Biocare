@@ -21,7 +21,7 @@ export function AboutVisionMission() {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 70,
         damping: 16,
       },
@@ -45,7 +45,7 @@ export function AboutVisionMission() {
       opacity: 1,
       x: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 80,
         damping: 12,
       },
@@ -144,7 +144,7 @@ export function AboutVisionMission() {
                   transition={{
                     duration: 5,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: "easeInOut" as const
                   }}
                 />
                 <motion.path
@@ -162,7 +162,7 @@ export function AboutVisionMission() {
                   transition={{
                     duration: 5,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: "easeInOut" as const
                   }}
                 />
               </svg>

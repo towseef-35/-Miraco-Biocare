@@ -90,7 +90,7 @@ export function NavDropdown({
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.2, ease: "easeOut" as const }}
             className="absolute left-0 top-full z-50 pt-1"
             onMouseEnter={handleEnter}
             onMouseLeave={handleLeave}

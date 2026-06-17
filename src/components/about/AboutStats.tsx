@@ -73,7 +73,7 @@ export function AboutStats() {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 80,
         damping: 18,
       },
@@ -131,7 +131,7 @@ export function AboutStats() {
                       initial={{ width: 0 }}
                       whileInView={{ width: "100%" }}
                       viewport={{ once: true }}
-                      transition={{ duration: 1.5, delay: i * 0.12, ease: "easeOut" }}
+                      transition={{ duration: 1.5, delay: i * 0.12, ease: "easeOut" as const }}
                       className={`h-full bg-gradient-to-r ${iconConfig.color} rounded-full`}
                     />
                   </div>

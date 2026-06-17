@@ -70,7 +70,7 @@ export function IndustriesSection() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.05, ease: "easeOut" }}
+                transition={{ duration: 0.6, delay: index * 0.05, ease: "easeOut" as const }}
               >
                 <div className="group relative h-full overflow-hidden rounded-[2.5rem] p-8 bg-white dark:bg-card border border-brand-border/60 dark:border-border/10 shadow-[0_8px_30px_rgba(0,0,0,0.01)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
                   {/* Subtle color spot on hover */}

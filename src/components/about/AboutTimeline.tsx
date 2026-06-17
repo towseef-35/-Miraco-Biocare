@@ -102,7 +102,7 @@ export function AboutTimeline() {
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-80px" }}
-                        transition={{ type: "spring", stiffness: 80, damping: 18 }}
+                        transition={{ type: "spring" as const, stiffness: 80, damping: 18 }}
                         className="w-full rounded-2xl border border-brand-border/50 dark:border-white/5 bg-white dark:bg-card p-6 shadow-md hover:shadow-lg transition-all duration-300 relative"
                       >
                         <div className="flex items-center gap-2 mb-3">
@@ -121,12 +121,12 @@ export function AboutTimeline() {
                       initial={{ scale: 0.6, opacity: 0 }}
                       whileInView={{ scale: 1, opacity: 1 }}
                       viewport={{ once: true, margin: "-80px" }}
-                      transition={{ type: "spring", stiffness: 120, damping: 15, delay: 0.1 }}
+                      transition={{ type: "spring" as const, stiffness: 120, damping: 15, delay: 0.1 }}
                       className="flex h-5 w-5 items-center justify-center rounded-full bg-white dark:bg-slate-900 border-2 border-brand-primary dark:border-brand-accent shadow-md z-30 relative"
                     >
                       <motion.div
                         animate={{ scale: [1, 1.4, 1] }}
-                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" as const }}
                         className="h-1.5 w-1.5 rounded-full bg-brand-primary dark:bg-brand-accent"
                       />
                     </motion.div>
@@ -139,7 +139,7 @@ export function AboutTimeline() {
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-80px" }}
-                        transition={{ type: "spring", stiffness: 80, damping: 18 }}
+                        transition={{ type: "spring" as const, stiffness: 80, damping: 18 }}
                         className="w-full rounded-2xl border border-brand-border/50 dark:border-white/5 bg-white dark:bg-card p-6 shadow-md hover:shadow-lg transition-all duration-300 relative"
                       >
                         <div className="flex items-center gap-2 mb-3">

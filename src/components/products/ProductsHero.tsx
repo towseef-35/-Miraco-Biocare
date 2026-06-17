@@ -22,7 +22,7 @@ export default function ProductsHero() {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeOut" as const }}
             className="max-w-2xl"
           >
             <span className="inline-flex rounded-full border border-secondary/20 bg-secondary/10 px-4 py-1.5 text-sm font-semibold uppercase tracking-[0.22em] text-secondary">
@@ -63,7 +63,7 @@ export default function ProductsHero() {
           <motion.div
             initial={{ opacity: 0, x: 80 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
+            transition={{ duration: 0.9, ease: "easeOut" as const }}
             className="relative mx-auto flex w-full max-w-md items-center justify-center"
           >
             <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-secondary/10 via-accent/10 to-slate-100 blur-3xl" />

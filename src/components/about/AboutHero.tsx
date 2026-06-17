@@ -105,7 +105,7 @@ export function AboutHero({
             }}
             transition={{
               duration: 25,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
               repeat: Infinity,
             }}
             className="relative w-full h-full opacity-35 dark:opacity-20"
@@ -139,7 +139,7 @@ export function AboutHero({
           }}
           transition={{
             duration: 10,
-            ease: "easeInOut",
+            ease: "easeInOut" as const,
             repeat: Infinity,
           }}
           className="absolute -bottom-32 right-1/4 w-[500px] h-[500px] rounded-full bg-brand-secondary/10 dark:bg-brand-secondary/15 blur-[100px] z-2"
@@ -221,7 +221,7 @@ export function AboutHero({
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.2 }}
             className="hidden lg:col-span-5 lg:flex lg:justify-center relative"
           >
             {/* Soft backdrop glow */}
@@ -305,7 +305,8 @@ export function AboutHero({
                             duration: 4,
                             delay,
                             repeat: Infinity,
-                            ease: "easeInOut",
+                            ease: "easeInOut" as const,
+                          }}
                           }}
                         />
                         {/* Node 2 (right side of helix) */}
@@ -323,7 +324,8 @@ export function AboutHero({
                             duration: 4,
                             delay,
                             repeat: Infinity,
-                            ease: "easeInOut",
+                            ease: "easeInOut" as const,
+                          }}
                           }}
                         />
                       </g>

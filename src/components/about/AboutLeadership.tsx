@@ -26,7 +26,7 @@ export function AboutLeadership() {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 75,
         damping: 16,
       },

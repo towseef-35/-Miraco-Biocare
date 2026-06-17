@@ -67,7 +67,7 @@ export function WhyChooseUs() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
+                transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" as const }}
                 className="group flex flex-col justify-between p-6 rounded-[2rem] bg-slate-50 dark:bg-card border border-brand-border/60 dark:border-border/10 shadow-[0_10px_30px_rgba(0,0,0,0.01)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] hover:bg-white dark:hover:bg-slate-900/60 hover:-translate-y-2 transition-all duration-300"
               >
                 <div>

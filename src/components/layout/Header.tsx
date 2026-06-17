@@ -204,24 +204,24 @@ export function Header() {
                       whileTap={{ scale: 0.96 }}
                       whileHover={{ scale: 1.03 }}
                       animate={{ scale: mobileOpen ? 1.02 : 1 }}
-                      transition={{ type: "spring", stiffness: 280, damping: 24 }}
+                      transition={{ type: "spring" as const, stiffness: 280, damping: 24 }}
                     >
                       <span className="sr-only">{mobileOpen ? "Close menu" : "Open menu"}</span>
                       <motion.span
                         className="absolute h-0.5 w-5 rounded-full bg-current"
                         animate={mobileOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -7 }}
-                        transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                        transition={{ type: "spring" as const, stiffness: 260, damping: 20 }}
                         style={{ transformOrigin: "center" }}
                       />
                       <motion.span
                         className="absolute h-0.5 w-5 rounded-full bg-current"
                         animate={mobileOpen ? { opacity: 0, scaleX: 0.4 } : { opacity: 1, scaleX: 1 }}
-                        transition={{ duration: 0.18, ease: "easeOut" }}
+                        transition={{ duration: 0.18, ease: "easeOut" as const }}
                       />
                       <motion.span
                         className="absolute h-0.5 w-5 rounded-full bg-current"
                         animate={mobileOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 7 }}
-                        transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                        transition={{ type: "spring" as const, stiffness: 260, damping: 20 }}
                         style={{ transformOrigin: "center" }}
                       />
                     </motion.button>

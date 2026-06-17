@@ -169,7 +169,7 @@ export function StatsSection() {
                       initial={{ width: 0 }}
                       whileInView={{ width: "100%" }}
                       viewport={{ once: true }}
-                      transition={{ duration: 1.8, delay: i * 0.15, ease: "easeOut" }}
+                      transition={{ duration: 1.8, delay: i * 0.15, ease: "easeOut" as const }}
                       className={`h-full bg-gradient-to-r ${stat.color} rounded-full`}
                     />
                   </div>

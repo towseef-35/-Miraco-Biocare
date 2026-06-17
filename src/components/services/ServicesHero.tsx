@@ -53,7 +53,7 @@ export function ServicesHero({
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 80,
         damping: 18,
       },
@@ -66,7 +66,7 @@ export function ServicesHero({
       rotate: [0, -1.5, 0],
       transition: {
         duration: 7,
-        ease: "easeInOut",
+        ease: "easeInOut" as const,
         repeat: Infinity,
       },
     },
@@ -93,7 +93,7 @@ export function ServicesHero({
             }}
             transition={{
               duration: 25,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
               repeat: Infinity,
             }}
             className="relative w-full h-full opacity-35 dark:opacity-20"
@@ -117,12 +117,12 @@ export function ServicesHero({
         {/* Glow dots */}
         <motion.div
           animate={{ scale: [1, 1.06, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" as const }}
           className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-brand-primary/15 dark:bg-brand-primary/20 blur-[80px] z-2"
         />
         <motion.div
           animate={{ scale: [1, 1.05, 1], opacity: [0.2, 0.4, 0.2] }}
-          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" as const }}
           className="absolute -bottom-32 right-1/4 w-[500px] h-[500px] rounded-full bg-brand-secondary/10 dark:bg-brand-secondary/15 blur-[100px] z-2"
         />
 
@@ -202,7 +202,7 @@ export function ServicesHero({
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.2 }}
             className="hidden lg:col-span-5 lg:flex lg:justify-center relative"
           >
             {/* Background Glow */}
@@ -234,7 +234,7 @@ export function ServicesHero({
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: "99.8%" }}
-                      transition={{ duration: 2, ease: "easeOut" }}
+                      transition={{ duration: 2, ease: "easeOut" as const }}
                       className="h-full bg-brand-primary dark:bg-brand-accent rounded-full"
                     />
                   </div>
@@ -250,7 +250,7 @@ export function ServicesHero({
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: "100%" }}
-                      transition={{ duration: 2, delay: 0.3, ease: "easeOut" }}
+                      transition={{ duration: 2, delay: 0.3, ease: "easeOut" as const }}
                       className="h-full bg-brand-secondary rounded-full"
                     />
                   </div>

@@ -27,7 +27,7 @@ export function AboutWhoWeAre() {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 70,
         damping: 16,
       },
@@ -75,7 +75,7 @@ export function AboutWhoWeAre() {
                 <motion.div
                   id="who-we-are-text-mobile"
                   animate={{ height: expanded ? "auto" : "110px" }}
-                  transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                  transition={{ type: "spring" as const, stiffness: 100, damping: 20 }}
                   className="relative overflow-hidden space-y-4"
                 >
                   <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">

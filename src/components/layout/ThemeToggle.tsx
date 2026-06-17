@@ -44,7 +44,7 @@ export function ThemeToggle() {
           initial={{ rotate: -90, scale: 0, opacity: 0 }}
           animate={{ rotate: 0, scale: 1, opacity: 1 }}
           exit={{ rotate: 90, scale: 0, opacity: 0 }}
-          transition={{ duration: 0.25, ease: "easeInOut" }}
+          transition={{ duration: 0.25, ease: "easeInOut" as const }}
           className="flex items-center justify-center"
         >
           {theme === "light" ? (
