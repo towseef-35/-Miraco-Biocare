@@ -53,7 +53,7 @@ export function AboutHero({
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 80,
         damping: 18,
       },
@@ -66,7 +66,7 @@ export function AboutHero({
       rotate: [0, 2, 0],
       transition: {
         duration: 6,
-        ease: "easeInOut",
+        ease: "easeInOut" as const,
         repeat: Infinity,
       },
     },
@@ -78,7 +78,7 @@ export function AboutHero({
       opacity: [0.3, 0.5, 0.3],
       transition: {
         duration: 8,
-        ease: "easeInOut",
+        ease: "easeInOut" as const,
         repeat: Infinity,
       },
     },
