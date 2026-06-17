@@ -307,7 +307,6 @@ export function AboutHero({
                             repeat: Infinity,
                             ease: "easeInOut" as const,
                           }}
-                          }}
                         />
                         {/* Node 2 (right side of helix) */}
                         <motion.circle
@@ -325,7 +324,6 @@ export function AboutHero({
                             delay,
                             repeat: Infinity,
                             ease: "easeInOut" as const,
-                          }}
                           }}
                         />
                       </g>
