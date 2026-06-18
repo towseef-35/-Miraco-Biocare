@@ -146,7 +146,7 @@ export function Footer() {
           <p>
             © 2026 Miraco Biocare Private Limited. All Rights Reserved.
             <br></br>
-Crafted & Developed by Towseef Ahmad Lone
+Crafted & Developed by Towseef Akram
           </p>
          
         </div>
