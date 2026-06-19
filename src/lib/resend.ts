@@ -2,8 +2,12 @@ import { Resend } from "resend";
 import { getProductBySlug } from "@/data/products";
 
 // Retrieve environment variables
-const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const CONTACT_RECEIVER = process.env.CONTACT_RECEIVER || "towseef.er420@gmail.com";
+const RESEND_API_KEY = process.env.RESEND_API_KEY
+  ? process.env.RESEND_API_KEY.replace(/^["']|["']$/g, "").trim()
+  : undefined;
+const CONTACT_RECEIVER = (process.env.CONTACT_RECEIVER || "towseef.er420@gmail.com")
+  .replace(/^["']|["']$/g, "")
+  .trim();
 
 // Initialize Resend
 const resend = new Resend(RESEND_API_KEY);

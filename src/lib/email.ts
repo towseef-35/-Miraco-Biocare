@@ -1,9 +1,15 @@
 import nodemailer from "nodemailer";
 
 // Retrieve environment variables
-const EMAIL_USER = process.env.EMAIL_USER;
-const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD;
-const CONTACT_RECEIVER = process.env.CONTACT_RECEIVER;
+const EMAIL_USER = process.env.EMAIL_USER
+  ? process.env.EMAIL_USER.replace(/^["']|["']$/g, "").trim()
+  : undefined;
+const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD
+  ? process.env.EMAIL_PASSWORD.replace(/^["']|["']$/g, "").trim()
+  : undefined;
+const CONTACT_RECEIVER = process.env.CONTACT_RECEIVER
+  ? process.env.CONTACT_RECEIVER.replace(/^["']|["']$/g, "").trim()
+  : undefined;
 
 // Fallbacks for hosting settings
 const EMAIL_HOST = process.env.EMAIL_HOST || "smtp.gmail.com";
