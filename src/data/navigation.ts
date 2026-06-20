@@ -8,6 +8,7 @@ export interface NavItem {
   title: string;
   href: string;
   children?: NavChild[];
+  megaMenu?: "product-portfolio";
 }
 
 export const divisions: NavChild[] = [
@@ -81,7 +82,7 @@ export const mainNav: NavItem[] = [
     href: "#",
     children: divisions,
   },
-  { title: "Product Portfolio", href: "/products" },
+  { title: "Product Portfolio", href: "/products", megaMenu: "product-portfolio" },
   { title: "Services", href: "/services" },
   { title: "News & Events", href: "/news" },
   {

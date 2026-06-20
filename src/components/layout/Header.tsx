@@ -13,7 +13,10 @@ import { company } from "@/data/company";
 import { cn } from "@/lib/utils";
 import { TopBar } from "./TopBar";
 import { NavDropdown } from "./NavDropdown";
+import { ProductPortfolioNavDropdown } from "./ProductPortfolioNavDropdown";
 import { MobileNavGroup } from "./MobileNavGroup";
+import { MobileProductPortfolioNav } from "./MobileProductPortfolioNav";
+import { isProductPortfolioPath } from "@/data/product-portfolio-navigation";
 import { ThemeToggle } from "./ThemeToggle";
 import { Logo3D } from "./Logo3D";
 
@@ -38,6 +41,9 @@ export function Header() {
   };
 
   const isNavItemActive = (item: (typeof mainNav)[number]) => {
+    if (item.megaMenu === "product-portfolio") {
+      return isProductPortfolioPath(pathname);
+    }
     if (item.children) {
       return (
         isActive(item.href) ||
@@ -104,7 +110,13 @@ export function Header() {
 
           <nav className="hidden items-center gap-1 xl:flex text-brand-text">
             {mainNav.map((item) =>
-              item.children ? (
+              item.megaMenu === "product-portfolio" ? (
+                <ProductPortfolioNavDropdown
+                  key={item.title}
+                  title={item.title}
+                  href={item.href}
+                />
+              ) : item.children ? (
                 <NavDropdown
                   key={item.title}
                   title={item.title}
@@ -269,7 +281,14 @@ export function Header() {
                         whileHover={{ y: -1 }}
                         whileTap={{ scale: 0.99 }}
                       >
-                        {item.children ? (
+                        {item.megaMenu === "product-portfolio" ? (
+                          <MobileProductPortfolioNav
+                            title={item.title}
+                            href={item.href}
+                            pathname={pathname}
+                            onNavigate={closeMobile}
+                          />
+                        ) : item.children ? (
                           <MobileNavGroup
                             title={item.title}
                             href={item.href}

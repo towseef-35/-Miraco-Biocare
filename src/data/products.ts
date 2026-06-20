@@ -1,3 +1,5 @@
+import { mdlsProducts } from "./mdls-products";
+
 export interface Product {
   slug: string;
   name: string;
@@ -7,6 +9,20 @@ export interface Product {
   features: string[];
   applications: string[];
   image: string;
+  
+  // Extended fields for Molecular Diagnostics & Life Sciences
+  divisionSlug?: "life-sciences" | "molecular-diagnostics";
+  categorySlug?: string;
+  subCategory?: string;
+  benefits?: string[];
+  specs?: Record<string, string>;
+  brochureUrl?: string;
+
+  // Technical datasheet fields
+  storageInfo?: string;
+  productContents?: string[];
+  orderingInfo?: string[];
+  safetyInfo?: string[];
 }
 
 export const productCategories = [
@@ -19,6 +35,8 @@ export const productCategories = [
 ];
 
 export const products: Product[] = [
+  ...mdlsProducts,
+
   {
     slug: "hematology-analyzer",
     name: "Advanced Hematology Analyzer",

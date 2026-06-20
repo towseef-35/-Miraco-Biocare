@@ -6,9 +6,11 @@ import { PageHero } from "@/components/shared/PageHero";
 import { ContactCTA } from "@/components/shared/ContactCTA";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import ProductActions from "@/components/ProductActions";
 import { createMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 import { products, getProductBySlug } from "@/data/products";
+import { enrichProduct } from "@/lib/product-enricher";
 
 const divisionPaths: Record<string, string> = {
   "Clinical Diagnostics": "/clinical-diagnostics",
@@ -39,8 +41,9 @@ export async function generateMetadata({ params }: ProductPageProps) {
 
 export default async function ProductDetailPage({ params }: ProductPageProps) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
-  if (!product) notFound();
+  const rawProduct = getProductBySlug(slug);
+  if (!rawProduct) notFound();
+  const product = enrichProduct(rawProduct);
 
   const divisionPath = divisionPaths[product.division] ?? "/";
 
@@ -121,11 +124,12 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
-                  href="/request-quotation"
+                  href={`/request-quotation?product=${product.slug}`}
                   className={cn(buttonVariants())}
                 >
                   Request Quotation
                 </Link>
+                <ProductActions product={product} layout="download-only" />
                 <Link
                   href="/contact"
                   className={cn(buttonVariants({ variant: "outline" }))}
