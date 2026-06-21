@@ -26,7 +26,7 @@ const footerSections = [
   { title: "Divisions", links: footerLinks.divisions },
   { title: "Solutions", links: footerLinks.products },
   { title: "Services", links: footerLinks.services },
-  { title: "Downloads", links: footerLinks.downloads },
+  // { title: "Downloads", links: footerLinks.downloads },
   { title: "Contact", links: footerLinks.contact },
 ];
 

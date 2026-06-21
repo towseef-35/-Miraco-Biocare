@@ -449,7 +449,7 @@ export async function generateProductPDF(product: Product) {
   setBodyStyle();
   [
     "Address: Bohlochipora, Soura, Srinagar, Jammu & Kashmir, India – 190011",
-    "Email: info@miracobiocare.com | miracobiocare@gmail.com",
+    "Email:  info@miracobiocare.com  | miracobiocare@gmail.com",
     "Phone: +91 9596241023 | +91 8178882335",
     "Website: www.miracobiocare.com",
     `Product Reference: ${product.name} (${catalogNumber})`,
