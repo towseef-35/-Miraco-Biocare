@@ -592,15 +592,17 @@ export function HeroSection() {
       ref={containerRef}
       className="relative w-full h-[140vh] md:h-[150vh] lg:h-[180vh] overflow-visible bg-brand-light dark:bg-slate-950 px-4 sm:px-6 md:px-8 py-4 lg:py-12"
     >
-      {/* Background Soft Blobs with scroll parallax */}
-      <motion.div 
-        style={{ y: yBlob1 }}
-        className="absolute top-1/4 left-1/4 w-[350px] h-[350px] bg-brand-primary/10 rounded-full blur-[120px] pointer-events-none z-1" 
-      />
-      <motion.div 
-        style={{ y: yBlob2 }}
-        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-brand-secondary/10 dark:bg-brand-primary/5 rounded-full blur-[140px] pointer-events-none z-1" 
-      />
+      {/* Background Soft Blobs with scroll parallax clipped to section width */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-1">
+        <motion.div 
+          style={{ y: yBlob1 }}
+          className="absolute top-1/4 left-1/4 w-[350px] h-[350px] bg-brand-primary/10 rounded-full blur-[120px]" 
+        />
+        <motion.div 
+          style={{ y: yBlob2 }}
+          className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-brand-secondary/10 dark:bg-brand-primary/5 rounded-full blur-[140px]" 
+        />
+      </div>
 
       {/* Pinned Viewport Container with 3D perspective fold-on-scroll */}
       <div 
